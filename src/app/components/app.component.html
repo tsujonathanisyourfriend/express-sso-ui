@@ -7,9 +7,15 @@
       <md-icon>account_box</md-icon>
       <span>Login</span>
     </button>
-    <button md-button>
+    <button md-button (click)="getCustomers()">
       <md-icon>cloud_download</md-icon>
       <span>Load Data</span>
     </button>
   </md-toolbar>
+</div>
+<div>{{error}}<div>
+<div *ngFor="let item of customers">
+  <span>{{item.id}}</span>,
+  <span>{{item.name}}</span>,
+  <span>{{item.password}}</span>
 </div>

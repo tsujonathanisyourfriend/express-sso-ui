@@ -1,23 +1,38 @@
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptionsArgs } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs/Observable";
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class PriceService {
-  public static token: string;
+  private token: string;
 
-  constructor() { }
+  constructor(private http: Http) { }
 
-  // public login(name: string, password: string): void {
-  //   this.http.get('http://localhost:3000/authenticate').subscribe(response => {
-  //     PriceService.token = (<any>response).token;
-  //   });
-  // }
+  public login(name: string, password: string): void {
+    var o = this.http
+      .get('http://localhost:3000/authenticate')
+      .map((response) => {
+        var result = response.json();
+        return result;
+      })
+      .subscribe(result => {
+        this.token = result.token;
+      });
+  }
 
-  // public loadDate(): Observable<any> {
-  //   return this.http.get('http://localhost:3000/api/customers/1').subscribe(response => {
-  //     var result = response.json();
-  //     return result;
-  //   });
-  // }
+  public loadDate(): Observable<any> {
+    const headers = new Headers();
+    headers.append('Authorization', 'bearer ' + this.token);
+
+    const options: RequestOptionsArgs = { headers: headers };
+
+    return this.http
+      .get('http://localhost:3000/api/customers/1') //, options)
+      .map((response) => {
+        const result = response.json();
+        console.log(result);
+        return result;
+      });
+  }
 }
