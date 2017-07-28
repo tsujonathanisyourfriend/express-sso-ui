@@ -23,12 +23,11 @@ export class PriceService {
 
   public loadDate(): Observable<any> {
     const headers = new Headers();
-    headers.append('Authorization', 'bearer ' + this.token);
-
+    headers.append('x-access-token', this.token);
     const options: RequestOptionsArgs = { headers: headers };
 
     return this.http
-      .get('http://localhost:3000/api/customers/1') //, options)
+      .get('http://localhost:3000/api/customers/1', options)
       .map((response) => {
         const result = response.json();
         console.log(result);
