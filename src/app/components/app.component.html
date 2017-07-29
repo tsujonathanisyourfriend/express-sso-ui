@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div>
   <md-toolbar color="primary">
-    <span>Price Sheet</span>
+    <span>JWT POC</span>
     <span class="spacer"></span>
     <button md-button (click)="openDialog()">
       <md-icon>account_box</md-icon>
@@ -13,9 +13,14 @@
     </button>
   </md-toolbar>
 </div>
-<div>{{error}}<div>
-<div *ngFor="let item of customers">
-  <span>{{item.id}}</span>,
-  <span>{{item.name}}</span>,
-  <span>{{item.password}}</span>
-</div>
+
+<div>{{error}}</div>
+
+<app-customer-list *ngIf="!!customers && customers.length>0" [customers]="customers"></app-customer-list>
+
+<div *ngIf="!customers || customers.length===0" style="height:300px" ></div>
+
+<hr>
+<footer>
+  <p>&copy; 2017 - JWT POC</p>
+</footer>

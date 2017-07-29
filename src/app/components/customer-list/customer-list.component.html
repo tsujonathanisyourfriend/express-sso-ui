@@ -1,0 +1,16 @@
+<div class="customer-list">
+  <md-list>
+    <md-list-item>
+      <h2 class="column">ID</h2>
+      <h2 class="column">Name</h2>
+      <h2 class="column">Password</h2>
+    </md-list-item>
+    <md-divider></md-divider>
+    <md-list-item *ngFor="let customer of customers">
+      <p class="column">{{customer.id}}</p>
+      <p class="column">{{customer.name}}</p>
+      <p class="column">{{customer.password}}</p>
+      <md-divider></md-divider>
+    </md-list-item>
+  </md-list>
+</div>

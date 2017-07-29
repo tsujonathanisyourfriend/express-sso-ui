@@ -2,6 +2,7 @@ import { Http, Headers, RequestOptionsArgs } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
+import { Customer } from '../models/customer';
 
 @Injectable()
 export class PriceService {
@@ -21,7 +22,7 @@ export class PriceService {
       });
   }
 
-  public loadDate(): Observable<any> {
+  public loadDate(): Observable<Customer[]> {
     const headers = new Headers();
     headers.append('x-access-token', this.token);
     const options: RequestOptionsArgs = { headers: headers };
@@ -30,7 +31,6 @@ export class PriceService {
       .get('http://localhost:3000/api/customers/1', options)
       .map((response) => {
         const result = response.json();
-        console.log(result);
         return result;
       });
   }

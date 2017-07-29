@@ -12,19 +12,24 @@ import {
   MdTabsModule, 
   MdDialog,
   MdDialogModule,
-  MdInputModule
+  MdInputModule,
+  MdTableModule
 } from '@angular/material';
 import 'hammerjs';
+import {CdkTableModule} from '@angular/cdk';
+
 
 import { AppComponent } from './components/app.component';
 import { LoginComponent } from './components/login/login.component';
 import { PriceService } from './services/price.service';
 import { Http } from '@angular/http';
+import { CustomerListComponent } from './components/customer-list/customer-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    CustomerListComponent
   ],
   entryComponents: [LoginComponent],
   imports: [
@@ -39,7 +44,9 @@ import { Http } from '@angular/http';
     MdTabsModule,
     MdDialogModule,
     MdInputModule,
-    HttpModule
+    HttpModule,
+    MdTableModule,
+    CdkTableModule
   ],
   providers: [PriceService],
   bootstrap: [AppComponent]
