@@ -12,7 +12,7 @@ export class PriceService {
 
   public login(name: string, password: string): void {
     var o = this.http
-      .get('http://localhost:3000/authenticate')
+      .get('https://localhost:3000/authenticate')
       .map((response) => {
         var result = response.json();
         return result;
@@ -28,7 +28,7 @@ export class PriceService {
     const options: RequestOptionsArgs = { headers: headers };
 
     return this.http
-      .get('http://localhost:3000/api/customers/1', options)
+      .get('https://localhost:3000/api/customers/1', options)
       .map((response) => {
         const result = response.json();
         return result;
